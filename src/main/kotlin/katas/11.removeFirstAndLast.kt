@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+package katas.removeFirstLast
 // https://www.codewars.com/kata/56bc28ad5bdaeb48760009b0/solutions/kotlin
 
 import kotlin.time.measureTimedValue

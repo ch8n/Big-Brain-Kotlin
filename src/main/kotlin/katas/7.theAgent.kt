@@ -1,3 +1,7 @@
+@file:Suppress("PackageDirectoryMismatch")
+package katas.agent
+
+
 //https://www.codewars.com/kata/5526fc09a1bbd946250002dc/train/kotlin
 
 import kotlin.time.measureTimedValue

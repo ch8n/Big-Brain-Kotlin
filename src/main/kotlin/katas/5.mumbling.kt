@@ -1,17 +1,23 @@
+@file:Suppress("PackageDirectoryMismatch")
+
+package katas.mumble
+
 import kotlin.time.measureTimedValue
+
 //https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
 // Mumble -> example : accum("abcd") -> "A-Bb-Ccc-Dddd"
 // accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 // accum("cwAt") -> "C-Ww-Aaa-Tttt"
 
+
 @kotlin.time.ExperimentalTime
-fun main(){
+fun main() {
     val input = "abcd"
-    
+
     measure("Chetan-1") {
         println(mumble1(input))
     }
-    
+
     measure("Chetan-2") {
         println(mumble2(input))
     }
@@ -28,48 +34,48 @@ fun main(){
         println(mumbleC1(input))
     }
 
-    measureTimedValue{
+    measureTimedValue {
         println("TimedValue")
         println(mumble1(input))
     }.also(::println)
 }
 
 @kotlin.time.ExperimentalTime
-fun measure(tag:String,block:()->Unit){
-    Thread(Runnable{
-        measureTimedValue { block.invoke() }.also{
+fun measure(tag: String, block: () -> Unit) {
+    Thread(Runnable {
+        measureTimedValue { block.invoke() }.also {
             println("""
 Inside Thread ${Thread.currentThread().name} 
 $tag took ${it} ms
 -----"""
-)
+            )
         }
     }).start()
 }
 
-fun mumble1(input:String):String{
+fun mumble1(input: String): String {
     val words = input.toCharArray()
     val mumble = StringBuilder()
-    for ((index,word) in words.withIndex()) {
+    for ((index, word) in words.withIndex()) {
         mumble.append(word.toUpperCase())
-        repeat(index){
+        repeat(index) {
             mumble.append(word.toLowerCase())
         }
-        if(index != words.size -1){
+        if (index != words.size - 1) {
             mumble.append("-")
         }
     }
     return mumble.toString()
 }
 
-fun mumble2(input:String) :String {
+fun mumble2(input: String): String {
     var result = ""
-    input.toCharArray().forEachIndexed{ index,item->
+    input.toCharArray().forEachIndexed { index, item ->
         result = "$result${item.toUpperCase()}"
-        repeat(index){
+        repeat(index) {
             result = "$result${item.toLowerCase()}"
         }
-        if(input.length-1 != index){
+        if (input.length - 1 != index) {
             result = "$result-"
         }
     }
@@ -77,13 +83,13 @@ fun mumble2(input:String) :String {
 }
 
 
-fun mumble3(input:String) :String {
-    val answer = input.toCharArray().foldIndexed(""){ index,acc,item->
+fun mumble3(input: String): String {
+    val answer = input.toCharArray().foldIndexed("") { index, acc, item ->
         var result = "$acc${item.toUpperCase()}"
-        repeat(index){
+        repeat(index) {
             result = "$result${item.toLowerCase()}"
         }
-        if((input.length - 1) != index){
+        if ((input.length - 1) != index) {
             result = "$result-"
         }
         result
@@ -91,29 +97,29 @@ fun mumble3(input:String) :String {
     return answer
 }
 
-fun mumble4(input:String):String{
+fun mumble4(input: String): String {
     val words = input.split("")
     val mumble = StringBuilder()
-    for ((index,word) in words.withIndex()) {
+    for ((index, word) in words.withIndex()) {
         mumble.append(word.toUpperCase())
-        repeat(index){
+        repeat(index) {
             mumble.append(word.toLowerCase())
         }
-        if(index != words.size -1){
+        if (index != words.size - 1) {
             mumble.append("-")
         }
     }
     return mumble.toString()
 }
 
-fun mumbleC1(words:String):String{
-    return words.mapIndexed { index, word -> 
+fun mumbleC1(words: String): String {
+    return words.mapIndexed { index, word ->
         "${word.toUpperCase()}${word.toString().toLowerCase().repeat(index)}"
     }.joinToString("-")
 }
 
-fun mumbleC2(words:String):String{
-    return words.mapIndexed { index, word -> 
+fun mumbleC2(words: String): String {
+    return words.mapIndexed { index, word ->
         "${word.toUpperCase()}${word.toString().toLowerCase().repeat(index)}"
     }.joinToString("-")
 }
@@ -148,11 +154,11 @@ fun mummble(word: String): String {
 
 //https://twitter.com/therealshabi
 
-fun shahbaz(words:String):String{
-    
-    val output = words.toLowerCase().mapIndexed { index,word ->
-        word.toString().repeat(index+1).capitalize()
+fun shahbaz(words: String): String {
+
+    val output = words.toLowerCase().mapIndexed { index, word ->
+        word.toString().repeat(index + 1).capitalize()
     }
-    
+
     return output.joinToString("-")
 }

@@ -1,3 +1,7 @@
+@file:Suppress("PackageDirectoryMismatch")
+package katas.morseCode
+
+
 // https://www.codewars.com/kata/54b724efac3d5402db00065e/train/kotlin
 
 /**
@@ -27,9 +31,7 @@ fun decodeMorse(code: String): String {
 
 fun decodeMorse2(code: String): String {
     val singalWords = code.split("   ").also(::println)
-    val morseChars = singalWords.
-
-    return ""
+    return "TODO"
 }
 
 private fun MorseCode(morseCode: String): String? =

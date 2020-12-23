@@ -1,11 +1,14 @@
+@file:Suppress("PackageDirectoryMismatch")
+
+package katas.template
+
 import kotlin.time.measureTimedValue
 
 
 @kotlin.time.ExperimentalTime
- fun code() {
-    
- }
+fun code() {
 
+}
 
 
 // ------------------------------------------

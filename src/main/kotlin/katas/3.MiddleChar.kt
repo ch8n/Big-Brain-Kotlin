@@ -3,6 +3,9 @@
 //If the word's length is odd, return the middle character. 
 //If the word's length is even, return the middle 2 characters.
 
+@file:Suppress("PackageDirectoryMismatch")
+package katas.middleChar
+
 fun main(){
     val input = "test"
     println("======== Chetan ==========")

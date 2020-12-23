@@ -1,5 +1,7 @@
 //https://www.codewars.com/kata/514b92a657cdc65150000006/train/kotlin
 
+@file:Suppress("PackageDirectoryMismatch")
+package katas.multiple3Or5
 
 // Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.
 fun main(){

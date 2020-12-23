@@ -1,3 +1,6 @@
+@file:Suppress("PackageDirectoryMismatch")
+package katas.longestCount
+
 //https://www.codewars.com/kata/5656b6906de340bd1b0000ac/train/kotlin
 
 import kotlin.time.measureTimedValue
