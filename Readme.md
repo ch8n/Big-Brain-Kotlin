@@ -15,7 +15,7 @@ problems.
 
 ## :book: Content
 * [DataStructure](https://github.com/ch8n/DataStructure-in-Kotlin) : List of DataStructure Using Kotlin
-* [ProblemSolving](./src/main/kotlin/Readme.md)
+* [ProblemSolving](./src/main/kotlin/Readme.md): Don't be Java-ish dev in this Kotlin-ish world ❤️
 
 ## :eyes: Social
 [LinkedIn](https://bit.ly/ch8n-linkdIn) | 
