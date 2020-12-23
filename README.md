@@ -1,4 +1,4 @@
-<h1 align="center">Problem-solving and Practice - <a href="https://chetangupta.net/bbk-main" target="_blank">BigBrainKotlin</a>
+<h1 align="center"><a href="https://chetangupta.net/bbk-main" target="_blank">BigBrainKotlin</a>
 </h1>
 
 ![Big-Brain-Kotlin](./bigBrain.jpg)
@@ -14,8 +14,8 @@ I also have special [`Big-Brain-Kotlin Series`](https://chetangupta.net/bbk-main
 problems.
 
 ## :book: Content
-* [DataStructure](https://github.com/ch8n/DataStructure-in-Kotlin) : List of DataStructure Using Kotlin
-* [ProblemSolving](./src/main/kotlin/Readme.md)
+* [Data-Structure](https://github.com/ch8n/DataStructure-in-Kotlin) : List of DataStructure Using Kotlin
+* [Problem-Solving](./src/main/kotlin/Readme.md): Don't be Java-ish dev in this Kotlin-ish world ❤️
 
 ## :eyes: Social
 [LinkedIn](https://bit.ly/ch8n-linkdIn) | 
