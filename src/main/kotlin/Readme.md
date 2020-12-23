@@ -1,11 +1,11 @@
 <h1 align="center">Problem-solving and Practice - <a href="https://chetangupta.net/bbk-main" target="_blank">BigBrainKotlin</a>
 </h1>
 
-![Big-Brain-Kotlin](./bigBrain.jpg)
+![Big-Brain-Kotlin](../../../bigBrain.jpg)
 
 ## :hand: About
 Hola Amigos! 🙌, welcome to my problem-solving and Data-structure playground!
-basically I do some of my pratice problem solving in here, you are welcome to explore around 👩‍💻 
+basically I do some of my practice problem solving in here, you are welcome to explore around 👩‍💻 
 
 Do let me know if you find something useful or want to suggest some improvement
 also don't forget to checkout of blogs at [`chetangupta.net`](https://chetangupta.net/)
@@ -13,9 +13,14 @@ also don't forget to checkout of blogs at [`chetangupta.net`](https://chetangupt
 I also have special [`Big-Brain-Kotlin Series`](https://chetangupta.net/bbk-main) on going which teaches Kotlin stdlib, for solving these
 problems.
 
-## :book: Content
-* [DataStructure](https://github.com/ch8n/DataStructure-in-Kotlin) : List of DataStructure Using Kotlin
-* [ProblemSolving](./src/main/kotlin/Readme.md)
+## :book: `Big-Brain-Kotlin Problem-Solving`
+* [BBK#1: Find Middle Element :male_detective:](https://chetangupta.net/bbk1/)
+* [BBK#2: Find Max and Min :male_detective:](https://chetangupta.net/bbk2/)
+* [BBK#3: Mumbling... :zany_face: ](https://chetangupta.net/bbk3/)
+* [BBK#4: Spin My Words :curly_loop: ](https://chetangupta.net/bbk4/)
+* [BBK#5: Imposter Among Us... :knife: ](https://chetangupta.net/bbk5/)
+
+
 
 ## :eyes: Social
 [LinkedIn](https://bit.ly/ch8n-linkdIn) | 
