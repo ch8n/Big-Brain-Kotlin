@@ -200,16 +200,16 @@ fun decodeMorse9(code: String): String {
     fun decodeMorse(code: String) = code
             .split("  ")
             .flatMap { it.split(" ") }
-            .map { morseCodeTranslator.get(it) }
+            .map { morseCodeTranslator.get(it)?:" " }
             .joinToString("")
-    return decodeMorse(code)
+    return "9"+decodeMorse(code)
 }
 
 fun decodeMorse6(code: String): String {
-    fun decodeMorse(code: String) = code
+    fun decodeMorse(code: String) = code.trim()
             .replace("  ", " ")
             .split(" ")
-            .map { morseCodeTranslator[it] }
+            .map { morseCodeTranslator[it]?:"" }
             .joinToString("")
     return "6"+decodeMorse(code)
 }
