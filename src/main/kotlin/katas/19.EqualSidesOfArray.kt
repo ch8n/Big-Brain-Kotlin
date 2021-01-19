@@ -19,6 +19,14 @@ import kotlin.time.measureTimedValue
 fun code() {
     val input = intArrayOf(1, 2, 3, 4, 3, 2, 1)
 
+    measure("ch8n-0") {
+        println(findEvenIndex0(input))
+    }
+
+    measure("ch8n-1") {
+        println(findEvenIndex1(input))
+    }
+
     measure("comm-1") {
         println(findEvenIndex2(input))
     }
@@ -31,17 +39,84 @@ fun code() {
         println(findEvenIndex4(input))
     }
 
-
 }
 
 
+fun findEvenIndex1(arr: IntArray): Int {
+    println("///")
+    val list = mutableListOf(1, 2, 3, 4, 5)
+    println(list)
+    val subs = list.subList(0, 3)
+    println(subs)
+    println(list)
+
+    list[0] = 5
+    println(subs)
+    println(list)
+
+    println("///")
+
+    for (index in arr.indices) {
+        val left = arr.toList().subList(0, index + 1).sum()
+        val right = arr.toList().subList(index, arr.size).sum()
+        if (left == right) {
+            return index
+        }
+    }
+    return -1
+}
+
+
+fun findEvenIndex0(arr: IntArray): Int {
+
+    var evenIndex = 0
+
+    // Loop max till the size of array
+    while (evenIndex != arr.size) {
+
+        // sum accumulator loop
+        var loopCounter = 0
+
+        // indicates sum from left side
+        var leftSum = 0
+
+        // indicates sum of remaining items
+        var rightSum = 0
+
+        // loop till the end of list and compute left and write sums
+        while (loopCounter != arr.size) {
+            when{
+                loopCounter < evenIndex -> leftSum += arr[loopCounter]
+                loopCounter == evenIndex -> {
+                    leftSum+=arr[loopCounter]
+                    rightSum+=arr[loopCounter]
+                }
+                else -> rightSum += arr[loopCounter]
+            }
+            ++loopCounter
+        }
+
+        // compare sum
+        if (leftSum == rightSum) {
+            // return found index
+            return evenIndex
+        } else {
+            // proceed for second round in loop
+            ++evenIndex
+        }
+    }
+
+    // index not found
+    return -1
+}
+
 
 fun findEvenIndex2(arr: IntArray): Int {
-    for (i in arr.indices) {
-        val left = arr.sliceArray(0..i).sum()
-        val right = arr.sliceArray(i..arr.lastIndex).sum()
+    for (index in arr.indices) {
+        val left = arr.sliceArray(0..index).sum()
+        val right = arr.sliceArray(index..arr.lastIndex).sum()
         if (left == right) {
-            return i
+            return index
         }
     }
     return -1
