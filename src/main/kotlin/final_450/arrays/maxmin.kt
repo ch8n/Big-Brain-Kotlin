@@ -1,4 +1,4 @@
-package final_450.strings
+package final_450.arrays
 
 fun main() {
     val input = arrayOf(4, 5, 1, 2)

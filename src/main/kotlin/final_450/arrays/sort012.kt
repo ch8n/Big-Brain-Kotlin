@@ -1,4 +1,4 @@
-package final_450.strings
+package final_450.arrays
 
 fun main() {
     val input = arrayOf(0, 2, 1, 2, 0)
@@ -7,6 +7,31 @@ fun main() {
     var leftPointer = 0
     var centerPointer = 0
     var rightPointer = input.size - 1
+
+    k =3
+    // 2n -> min max
+
+//    13, 14, 21, 35, 40
+//    10, 11,19,32, 37
+//    16, 14[], 21, 35, 37
+//
+//    1,1,2,5,2,5,1,2
+//    best = 4
+//    current = 4
+//    11
+//    k =3
+//    diff = 6-2 = 4
+//    4,5,6
+//    7, 5 , 3
+//    3 5 7
+    // 2n + n = n
+    // max, min
+    // max - k, min + k
+    // others -> item[i(1->lastIndex-1)] > item+k < max, item-k > min
+
+
+   // 3, 9, 12, 16, 20
+
 
 
     input.forEach { it ->

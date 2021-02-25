@@ -1,4 +1,4 @@
-package final_450.strings
+package final_450.arrays
 
 fun main() {
     val input = arrayOf(-12, 11, -13, -5, 6, -7, 5, -3, -6).toMutableList()

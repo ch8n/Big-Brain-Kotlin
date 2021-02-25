@@ -1,4 +1,4 @@
-package final_450.strings
+package final_450.arrays
 
 fun main() {
     // Given an array arr[] and a number K where K is smaller
