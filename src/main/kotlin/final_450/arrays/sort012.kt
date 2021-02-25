@@ -8,7 +8,7 @@ fun main() {
     var centerPointer = 0
     var rightPointer = input.size - 1
 
-    k =3
+    //k =3
     // 2n -> min max
 
 //    13, 14, 21, 35, 40
