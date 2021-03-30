@@ -1,66 +1,53 @@
 package final_450.arrays
 
 fun main() {
-    val input = arrayOf(0, 2, 1, 2, 0)
-    val result = input.toMutableList()
+    sorting()
+    countOccurance()
+    threePointers()
+}
 
-    var leftPointer = 0
-    var centerPointer = 0
-    var rightPointer = input.size - 1
+fun sorting() {
+    val input = listOf(0, 2, 1, 2, 0)
+    val result = input.sorted()
+    println(result)
+}
 
-    //k =3
-    // 2n -> min max
+fun countOccurance() {
+    val input = mutableListOf(0, 2, 1, 2, 0)
+    val result = mutableListOf<Int>()
+    val counts = input.fold(Triple(0, 0, 0)) { acc, item ->
+        return@fold when {
+            item == 0 -> acc.copy(first = acc.first + 1)
+            item == 1 -> acc.copy(second = acc.second + 1)
+            item == 2 -> acc.copy(third = acc.third + 1)
+            else -> acc
+        }
+    }
+    val (zeros, one, two) = counts
+    repeat(zeros) { result.add(0) }
+    repeat(one) { result.add(1) }
+    repeat(two) { result.add(2) }
+    println(result)
+}
 
-//    13, 14, 21, 35, 40
-//    10, 11,19,32, 37
-//    16, 14[], 21, 35, 37
-//
-//    1,1,2,5,2,5,1,2
-//    best = 4
-//    current = 4
-//    11
-//    k =3
-//    diff = 6-2 = 4
-//    4,5,6
-//    7, 5 , 3
-//    3 5 7
-    // 2n + n = n
-    // max, min
-    // max - k, min + k
-    // others -> item[i(1->lastIndex-1)] > item+k < max, item-k > min
-
-
-   // 3, 9, 12, 16, 20
-
-
-
-    input.forEach { it ->
-        when (it) {
+fun threePointers() {
+    val input = mutableListOf(0, 2, 1, 2, 0)
+    val result = input.toMutableList<Int>()
+    var pointers = Triple(0, 0, input.lastIndex)
+    input.forEach() { item ->
+        when (item) {
             0 -> {
-                // swap pos with left pointer
-                // inc left & center
-                result.swap(leftPointer, centerPointer)
-                ++leftPointer
+                result.set(pointers.first, item)
+                pointers = pointers.copy(first = pointers.first + 1, second = pointers.second + 1)
             }
             1 -> {
-                // inc center pointer
-                ++centerPointer
+                pointers = pointers.copy(second = pointers.second + 1)
             }
             2 -> {
-                // swap last with center
-                // dec last
-                result.swap(centerPointer, rightPointer)
-                --rightPointer
-
+                result.set(pointers.third, item)
+                pointers = pointers.copy(second = pointers.second - 1)
             }
         }
     }
     println(result)
-}
-
-fun MutableList<Int>.swap(`this`: Int, that: Int) {
-    val first = get(`this`)
-    val last = get(that)
-    this.add(`this`, last)
-    this.add(that, first)
 }

@@ -2,26 +2,30 @@ package final_450.arrays
 
 fun main() {
     //Reverse the array
-    val input = arrayOf(4, 5, 1, 2).toMutableList()
+    val input = arrayOf(4, 5, 1, 6, 2)
+    reverseWithExtraSpace(input.toIntArray())
+    reverseWithNoExtraSpace(input.toIntArray())
 
-    // same array
-    val length = input.size - 1
-    for (i in input.lastIndex downTo length / 2) {
-        val lastIndex = i
-        val firstIndex = length - i
-        val last = input[lastIndex]
-        val first = input[firstIndex]
-        input[firstIndex] = last
-        input[lastIndex] = first
-    }
-    println(input)
+}
 
-    // new array
-    val mutableList = mutableListOf<Int>()
+fun reverseWithExtraSpace(input: IntArray) {
+    val reversed = mutableListOf<Int>()
     for (index in input.lastIndex downTo 0) {
-        mutableList.add(input[index])
+        reversed.add(input[index])
     }
+    println(reversed.toString())
+}
 
-
+fun reverseWithNoExtraSpace(input: IntArray) = with(input) {
+    val current = toMutableList()
+    val mid = lastIndex / 2
+    for (index in lastIndex downTo mid) {
+        val firstIndex = lastIndex - index
+        val first = input.get(firstIndex)
+        val last = input.get(index)
+        current.set(index, first)
+        current.set(firstIndex, last)
+    }
+    println(current)
 }
 
