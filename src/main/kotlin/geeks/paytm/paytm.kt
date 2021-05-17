@@ -1,8 +1,9 @@
+@file:Suppress("ControlFlowWithEmptyBody")
+
 package geeks.paytm
 
 
 // https://www.geeksforgeeks.org/Paytm-topics-interview-preparation/
-
 
 
 // 1  2  3  4  5
@@ -19,16 +20,20 @@ fun main() {
     whichFinger(18)
     whichFinger(22)
     whichFinger(30)
+    listOf(1, 2, 3, 4, 5, 6, 7, 8).binarySearch(2).also(::println)
+    listOf(1,2,3,7,5).subArrayOf(20)
 }
 
-fun whichFinger(number:Int){
-    println( when(number%5){
-        0->"thumb"
-        1->"first"
-        2->"middle"
-        3->"ring"
-        else->"pinky"
-    })
+fun whichFinger(number: Int) {
+    println(
+        when (number % 5) {
+            0 -> "thumb"
+            1 -> "first"
+            2 -> "middle"
+            3 -> "ring"
+            else -> "pinky"
+        }
+    )
 }
 
 fun angleBetweenHourAndMin() {
@@ -163,6 +168,50 @@ fun List<Int>.mergeSort(): List<Int> {
 
 }
 
+fun List<Int>.binarySearch(item: Int): Int {
+    var start = 0
+    var end = lastIndex
+    var mid = (start + end) / 2
+    while (start <= end) {
+        when {
+            get(mid) == item -> return mid
+            get(mid) < item -> start = mid
+            get(mid) > item -> end = mid
+        }
+        mid = (start + end) / 2
+    }
+    return -1
+}
 
+// 1,2,3,7,5 | 12
+// 1+2 = 3+3=6 + 7 = 13
+// 2+3
+fun List<Int>.subArrayOf(sum: Int) {
+
+    var startIndex = 0
+    var endIndex = 0
+    var currentSum = 0
+
+    while (startIndex <= lastIndex) {
+
+        val current = getOrNull(endIndex)?:0
+        currentSum += current
+        println("$startIndex|$endIndex|$currentSum")
+        
+        if(currentSum == sum){
+            break
+        }
+
+        if(currentSum < sum){
+            ++endIndex
+        }
+
+        
+        
+    }
+
+    println("$startIndex $endIndex")
+
+}
 
 
