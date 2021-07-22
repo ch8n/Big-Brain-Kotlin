@@ -19,37 +19,27 @@ fun main() {
     while (left <= right && top <= bottom) {
         when (direction) {
             Direction.LEFT -> {
-                for (index in left..right) {
-                    print("${input[top][index]},")
-                }
+                (left..right).forEach { print("${input[top][it]},") }
                 top++
                 direction = Direction.BOTTOM
             }
             Direction.BOTTOM -> {
-                for (index in top..bottom) {
-                    print("${input[index][right]},")
-                }
+                (top..bottom).forEach { print("${input[it][right]},") }
                 --right
                 direction = Direction.RIGHT
             }
             Direction.RIGHT -> {
-                for (index in right downTo left) {
-                    print("${input[right][index]},")
-                }
+                (right downTo left).forEach { print("${input[right][it]},") }
                 --bottom
                 direction = Direction.TOP
             }
             Direction.TOP -> {
-                for (index in bottom downTo top) {
-                    print("${input[index][left]},")
-                }
+                (bottom downTo top).forEach { print("${input[left][it]},") }
                 ++left
                 direction = Direction.LEFT
             }
         }
-
     }
-
 }
 
 enum class Direction {
