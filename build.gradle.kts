@@ -6,22 +6,16 @@ import org.jetbrains.kotlin.allopen.gradle.*
 import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
-    java
-    kotlin("jvm") version "1.4.30"
+    kotlin("jvm") version "1.7.10"
     kotlin("plugin.allopen") version "1.4.0"
     id("org.jetbrains.kotlinx.benchmark") version "0.3.0"
-}
-
-sourceSets.all {
-    java.setSrcDirs(listOf("$name/src"))
-    resources.setSrcDirs(listOf("$name/resources"))
 }
 
 configure<AllOpenExtension> {
     annotation("org.openjdk.jmh.annotations.State")
 }
 
-group = "ch8n.bigbrain.problem_solving"
+group = "dev.ch8n"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -29,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib"))
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
