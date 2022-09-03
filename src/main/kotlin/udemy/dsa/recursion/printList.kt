@@ -6,6 +6,10 @@ fun main() {
     list.headRecursion { print(it) }
     println()
     list.tailRecursion { print(it) }
+    println()
+    list.reverseHeadRecursion { print(it) }
+    println()
+    list.reverseTailRecursion { print(it) }
 }
 fun <T> List<T>.headRecursion(index: Int = lastIndex, next: (item: T) -> Unit) {
     if (index >= 0) {
