@@ -1,50 +1,37 @@
 package udemy.dsa.recursion
 
 
-fun List<Int>.printForward(index: Int = 0) {
-    if (index > lastIndex) {
-        println()
-    } else {
-        print(get(index))
-        printForward(index + 1)
-    }
-}
-
-fun List<Int>.printBack(index: Int = 0) {
-    if (index > lastIndex) {
-        println()
-    } else {
-        printBack(index + 1)
-        print(get(index))
-    }
-}
-
-
-fun List<Int>.printForward2(index: Int = lastIndex) {
-    if (index < 0) {
-        println()
-    } else {
-        printForward2(index - 1)
-        print(get(index))
-    }
-}
-
-fun List<Int>.printBackward2(index: Int = lastIndex) {
-    if (index < 0) {
-        println()
-    } else {
-        print(get(index))
-        printBackward2(index - 1)
-    }
-}
-
 fun main() {
     val list = listOf(1, 2, 3, 4, 5, 6)
-    list.printForward()
-    list.printBack()
-
-    list.printForward2()
+    list.headRecursion { print(it) }
     println()
-    list.printBackward2()
+    list.tailRecursion { print(it) }
 }
+fun <T> List<T>.headRecursion(index: Int = lastIndex, next: (item: T) -> Unit) {
+    if (index >= 0) {
+        headRecursion(index - 1, next)
+        next.invoke(get(index))
+    }
+}
+fun <T> List<T>.tailRecursion(index: Int = 0, next: (item: T) -> Unit) {
+    if (lastIndex >= index) {
+        next.invoke(get(index))
+        tailRecursion(index + 1, next)
+    }
+}
+
+fun <T> List<T>.reverseHeadRecursion(index: Int = 0, next: (item: T) -> Unit) {
+    if (lastIndex >= index) {
+        reverseHeadRecursion(index + 1, next)
+        next.invoke(get(index))
+    }
+}
+
+fun <T> List<T>.reverseTailRecursion(index: Int = lastIndex, next: (item: T) -> Unit) {
+    if (index >= 0) {
+        next.invoke(get(index))
+        reverseTailRecursion(index - 1, next)
+    }
+}
+
 
