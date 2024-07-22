@@ -23,6 +23,7 @@ private fun main() {
 
     with(NeetCodeBlind75.SlidingWindow) {
         buyAndSellStock()
+        longestSubStringWithoutRepeat()
     }
 }
 
@@ -374,6 +375,36 @@ private object NeetCodeBlind75 {
                 listOf(7, 1, 5, 3, 6, 4),//5
                 listOf(7, 6, 4, 3, 1),//0
             )
+            inputs.onEach { solution(it) }
+        }
+
+        fun longestSubStringWithoutRepeat() {
+            // https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+            fun solution(input: String) {
+                //abcabcbb
+                val charIndex = hashMapOf<Char, Int>()
+                var start = 0
+                var length = 0
+                for (index in 0..input.lastIndex) {
+                    val char = input.get(index)
+                    if (charIndex.containsKey(char)) {
+                        val charIndex = charIndex.get(char) ?: -1
+                        start = maxOf(charIndex + 1, start)
+                    }
+
+                    charIndex.put(char, index)
+                    length = maxOf(length, index - start + 1)
+                }
+                println("input $input, noRepeatSubStringLength->$length")
+            }
+
+            val inputs = listOf(
+                "abcabcbb", // 3
+                "bbbbb", // 1
+                "pwwkew", // 3
+            )
+
             inputs.onEach { solution(it) }
         }
     }
