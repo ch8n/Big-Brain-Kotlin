@@ -91,7 +91,7 @@ val morseCodeTranslator = mapOf<String, String>(
         "-.--" to "Y",
         "--.." to "Z",
         ".----" to "1",
-        "..---" to "2",
+        "..---" to "2/neetcode",
         "...--" to "3",
         "....-" to "4",
         "....." to "5",
