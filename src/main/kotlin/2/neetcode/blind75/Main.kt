@@ -450,10 +450,7 @@ private object NeetCodeBlind75 {
             // https://leetcode.com/problems/minimum-window-substring/description/
             fun solution(input1: String, target: String) {
 
-                val targetCharCount = mutableMapOf<Char, Int>()
-                for (char in target) {
-                    targetCharCount[char] = 1 + targetCharCount.getOrDefault(char, 0)
-                }
+                val targetCharCount = target.groupingBy { it }.eachCount()
 
                 var startIndex = 0
                 var currentIndex = 0
@@ -461,35 +458,34 @@ private object NeetCodeBlind75 {
                 var have = 0
                 val need = targetCharCount.size
 
-                val windowCharCount = mutableMapOf<Char, Int>()
+                val currentWindowCharCount = mutableMapOf<Char, Int>()
                 var targetFoundLength = Int.MAX_VALUE
                 var targetFoundIndexes = 0 to 0
 
                 while (currentIndex < input1.length) {
 
-                    val currentChar = input1[currentIndex]
-                    windowCharCount[currentChar] = 1 + windowCharCount.getOrDefault(currentChar, 0)
+                    val currentChar = input1.get(currentIndex)
+                    currentWindowCharCount[currentChar] = 1 + currentWindowCharCount.getOrDefault(currentChar, 0)
 
-                    if (currentChar in targetCharCount && windowCharCount[currentChar] == targetCharCount[currentChar]) {
+                    if (currentChar in targetCharCount && currentWindowCharCount[currentChar] == targetCharCount[currentChar]) {
                         have += 1
                     }
 
-                    while (startIndex <= currentIndex && have == need) {
-
+                    while (have == need) {
                         val windowSize = currentIndex - startIndex + 1
                         if (windowSize < targetFoundLength) {
                             targetFoundLength = windowSize
                             targetFoundIndexes = startIndex to currentIndex
                         }
 
-                        val startCharacter = input1[startIndex]
-                        windowCharCount[startCharacter] = windowCharCount.getOrDefault(startCharacter, 0) - 1
-                        if (startCharacter in targetCharCount && windowCharCount[startCharacter]!! < targetCharCount[startCharacter]!!) {
+                        val startCharacter = input1.get(startIndex)
+                        currentWindowCharCount[startCharacter] = currentWindowCharCount.getOrDefault(startCharacter, 0) - 1
+                        if (startCharacter in targetCharCount && currentWindowCharCount[startCharacter]!! < targetCharCount[startCharacter]!!) {
                             have--
                         }
-                        startIndex++
+                        startIndex+=1
                     }
-                    currentIndex++
+                    currentIndex+=1
                 }
 
                 val result = if (targetFoundLength == Int.MAX_VALUE) "" else input1.substring(targetFoundIndexes.first, targetFoundIndexes.second + 1)
