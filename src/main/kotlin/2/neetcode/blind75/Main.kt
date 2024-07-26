@@ -1,7 +1,5 @@
 package `2`.neetcode.blind75
 
-import kotlin.math.max
-
 
 private fun main() {
     with(NeetCodeBlind75.Hashing) {
@@ -24,6 +22,7 @@ private fun main() {
     with(NeetCodeBlind75.SlidingWindow) {
         buyAndSellStock()
         longestSubStringWithoutRepeat()
+        longestRepeatingCharacterReplacement()
     }
 }
 
@@ -406,6 +405,44 @@ private object NeetCodeBlind75 {
             )
 
             inputs.onEach { solution(it) }
+        }
+
+        fun longestRepeatingCharacterReplacement() {
+            // https://leetcode.com/problems/longest-repeating-character-replacement/description/
+
+            fun solution(input: String, limit: Int) {
+                val countMap = hashMapOf<Char, Int>()
+                var countStartIndex = 0
+
+                var maxFrequency = 0
+                var maxLength = 0
+
+                for ((currentIndex, currentChar) in input.withIndex()) {
+
+                    val count = countMap.getOrDefault(currentChar, 0)
+                    countMap.put(currentChar, count + 1)
+                    maxFrequency = maxOf(maxFrequency, count + 1)
+
+                    val windowLength = currentIndex - countStartIndex + 1
+                    if (windowLength - maxFrequency > limit) {
+                        val countStartChar = input.get(countStartIndex)
+                        val charCount = countMap.get(countStartChar) ?: 0
+                        countMap.put(countStartChar, charCount - 1)
+                        countStartIndex += 1
+                    }
+
+                    maxLength = maxOf(maxLength, windowLength)
+                }
+
+                println("$input | $limit -> $maxLength")
+            }
+
+            val input = listOf(
+                "ABAB" to 2,
+                "AABABBA" to 1,
+            )
+
+            input.onEach { solution(it.first, it.second) }
         }
     }
 }

@@ -7,7 +7,12 @@ private fun main() {
     }
 
     with(NeetCode150.TwoPointers) {
+        twoSum2SortedInputs()
         trappingWater()
+    }
+
+    with(NeetCode150.SlidingWindow) {
+        permutationInString()
     }
 }
 
@@ -61,6 +66,39 @@ private object NeetCode150 {
     }
 
     object TwoPointers {
+        fun twoSum2SortedInputs() {
+            // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+            fun solution(input: List<Int>, target: Int) {
+                var start = 0
+                var end = input.lastIndex
+                val result = mutableListOf<Int>()
+                while (start < end) {
+                    val first = input.get(start)
+                    val last = input.get(end)
+                    val sum = first + last
+                    if (sum == target) {
+                        result.add(start)
+                        result.add(end)
+                        break
+                    }
+                    if (sum > target) {
+                        end -= 1
+                        continue
+                    }
+                    start += 1
+                }
+
+                println("input $input | target $target | result $result")
+            }
+
+            val inputs = listOf(
+                listOf(2, 7, 11, 15) to 9,//1,2
+                listOf(2, 3, 4) to 6//1,3
+            )
+
+            inputs.onEach { solution(it.first, it.second) }
+        }
+
         fun trappingWater() {
 
             fun solution1(input: List<Int>) {
@@ -118,7 +156,35 @@ private object NeetCode150 {
             inputs
                 .onEach { solution1(it) }
                 .onEach { solution2(it) }
+        }
+    }
 
+    object SlidingWindow {
+
+        fun permutationInString() {
+            //https://leetcode.com/problems/permutation-in-string/description/
+            fun solution(input1: String, input2: String) {
+                var isPermu = false
+                val input1Count = input1.groupingBy { it }.eachCount()
+                val window = input2.windowed(input1.length)
+
+                for (group in window) {
+                    val input2Count = group.groupingBy { it }.eachCount()
+                    if (input1Count == input2Count) {
+                        isPermu = true
+                        break
+                    }
+                }
+                println("$input1 & $input2 isPermu $isPermu")
+            }
+
+            val inputs = listOf(
+                listOf("ab", "eidbaooo"),//true
+                listOf("ab", "eidboaoo"),// false
+                listOf("abc", "ccccbbbbaaaa"),// false
+            )
+
+            inputs.onEach { solution(it.get(0), it.get(1)) }
         }
     }
 }
