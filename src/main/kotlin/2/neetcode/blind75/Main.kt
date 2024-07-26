@@ -24,6 +24,11 @@ private fun main() {
         longestSubStringWithoutRepeat()
         longestRepeatingCharacterReplacement()
         minWindowSubString()
+        slidingWindowMaximum()
+    }
+
+    with(NeetCodeBlind75.Stack) {
+        validParenthese()
     }
 }
 
@@ -479,16 +484,20 @@ private object NeetCodeBlind75 {
                         }
 
                         val startCharacter = input1.get(startIndex)
-                        currentWindowCharCount[startCharacter] = currentWindowCharCount.getOrDefault(startCharacter, 0) - 1
+                        currentWindowCharCount[startCharacter] =
+                            currentWindowCharCount.getOrDefault(startCharacter, 0) - 1
                         if (startCharacter in targetCharCount && currentWindowCharCount[startCharacter]!! < targetCharCount[startCharacter]!!) {
                             have--
                         }
-                        startIndex+=1
+                        startIndex += 1
                     }
-                    currentIndex+=1
+                    currentIndex += 1
                 }
 
-                val result = if (targetFoundLength == Int.MAX_VALUE) "" else input1.substring(targetFoundIndexes.first, targetFoundIndexes.second + 1)
+                val result = if (targetFoundLength == Int.MAX_VALUE) "" else input1.substring(
+                    targetFoundIndexes.first,
+                    targetFoundIndexes.second + 1
+                )
                 println(result)
             }
 
@@ -501,6 +510,58 @@ private object NeetCodeBlind75 {
             inputs.onEach {
                 solution(it.first, it.second)
             }
+        }
+
+        fun slidingWindowMaximum() {
+            //https://leetcode.com/problems/sliding-window-maximum/description/
+            fun solution(input: List<Int>, k: Int) {
+                val result = input.windowed(k).map { it.maxBy { it } }
+                println("sliding window $input -> $result")
+            }
+
+            val inputs = listOf(
+                listOf(1, 3, -1, -3, 5, 3, 6, 7) to 3, // 3,3,5,5,6,7
+                listOf(1) to 1 // 1
+            )
+            inputs.onEach { solution(it.first, it.second) }
+        }
+    }
+
+    object Stack {
+
+        fun validParenthese() {
+            // https://leetcode.com/problems/valid-parentheses/description/
+
+            fun solution(input: String) {
+                var isValid = true
+                val openChars = mapOf(
+                    '(' to ')',
+                    '[' to ']',
+                    '{' to '}',
+                )
+                val stack = mutableListOf<Char>()
+                for (char in input){
+                    if (char in openChars) {
+                        stack.add(char)
+                        continue
+                    }
+                    val top = stack.removeAt(0)
+                    val closeChar = openChars.get(top)
+                    if (closeChar != char) {
+                        isValid = false
+                        break
+                    }
+                }
+                println("$input isValid $isValid")
+            }
+
+            val inputs = listOf(
+                "()",
+                "()[]{}",
+                "(]",
+            )
+
+            inputs.onEach { solution(it) }
         }
     }
 }
