@@ -23,6 +23,7 @@ private fun main() {
         buyAndSellStock()
         longestSubStringWithoutRepeat()
         longestRepeatingCharacterReplacement()
+        minWindowSubString()
     }
 }
 
@@ -443,6 +444,67 @@ private object NeetCodeBlind75 {
             )
 
             input.onEach { solution(it.first, it.second) }
+        }
+
+        fun minWindowSubString() {
+            // https://leetcode.com/problems/minimum-window-substring/description/
+            fun solution(input1: String, target: String) {
+
+                val targetCharCount = mutableMapOf<Char, Int>()
+                for (char in target) {
+                    targetCharCount[char] = 1 + targetCharCount.getOrDefault(char, 0)
+                }
+
+                var startIndex = 0
+                var currentIndex = 0
+
+                var have = 0
+                val need = targetCharCount.size
+
+                val windowCharCount = mutableMapOf<Char, Int>()
+                var targetFoundLength = Int.MAX_VALUE
+                var targetFoundIndexes = 0 to 0
+
+                while (currentIndex < input1.length) {
+
+                    val currentChar = input1[currentIndex]
+                    windowCharCount[currentChar] = 1 + windowCharCount.getOrDefault(currentChar, 0)
+
+                    if (currentChar in targetCharCount && windowCharCount[currentChar] == targetCharCount[currentChar]) {
+                        have += 1
+                    }
+
+                    while (startIndex <= currentIndex && have == need) {
+
+                        val windowSize = currentIndex - startIndex + 1
+                        if (windowSize < targetFoundLength) {
+                            targetFoundLength = windowSize
+                            targetFoundIndexes = startIndex to currentIndex
+                        }
+
+                        val startCharacter = input1[startIndex]
+                        windowCharCount[startCharacter] = windowCharCount.getOrDefault(startCharacter, 0) - 1
+                        if (startCharacter in targetCharCount && windowCharCount[startCharacter]!! < targetCharCount[startCharacter]!!) {
+                            have--
+                        }
+                        startIndex++
+                    }
+                    currentIndex++
+                }
+
+                val result = if (targetFoundLength == Int.MAX_VALUE) "" else input1.substring(targetFoundIndexes.first, targetFoundIndexes.second + 1)
+                println(result)
+            }
+
+            val inputs = listOf(
+                "ADOBECODEBANC" to "ABC",
+                "a" to "a",
+                "a" to "aa",
+            )
+
+            inputs.onEach {
+                solution(it.first, it.second)
+            }
         }
     }
 }
